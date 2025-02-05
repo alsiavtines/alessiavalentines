@@ -7,10 +7,27 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    <script>
+        function createHeart() {
+            const heart = document.createElement("div");
+            heart.innerHTML = "❤️";
+            heart.classList.add("heart");
+            document.body.appendChild(heart);
+            
+            const size = Math.random() * 20 + 10 + "px";
+            heart.style.left = Math.random() * window.innerWidth + "px";
+            heart.style.fontSize = size;
+            heart.style.animationDuration = Math.random() * 2 + 2 + "s";
+
+            setTimeout(() => heart.remove(), 4000);
+        }
+
+        setInterval(createHeart, 500);
+    </script>
     <div class="container">
         <img src="images/image1.jpeg" alt="Main Image" class="main-image">
         <a href="page2.html">
-            <button class="btn">Go to Next Page</button>
+            <button class="btn">Click here</button>
         </a>
     </div>
 </body>

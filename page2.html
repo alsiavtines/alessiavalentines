@@ -5,11 +5,51 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Page 2</title>
     <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Center the container */
+        .container {
+            text-align: center;
+            padding: 20px;
+        }
+
+        /* Responsive image */
+        .animated-image {
+            width: 80%; /* Adjust for mobile screens */
+            max-width: 400px; /* Limit max size */
+            height: auto;
+            border-radius: 10px;
+            animation: swapImages 1s infinite alternate ease-in-out;
+        }
+
+        /* Keyframes for image animation */
+        @keyframes swapImages {
+            0% { content: url('images/IMG_6819.png'); }
+            100% { content: url('images/IMG_number2.png'); }
+        }
+
+        /* Styled button */
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            font-size: 16px;
+            color: white;
+            background-color: #007BFF;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            margin-top: 15px;
+        }
+
+        .btn:hover {
+            background-color: #0056b3;
+        }
+    </style>
 </head>
 <body>
     <div class="container">
         <h1>Welcome to Page 2</h1>
-        <img src="images/image2.jpeg" alt="Second Image" class="second-image">
+        <img class="animated-image" alt="Alternating Image">
         <p>This is some text describing the second page.</p>
         <a href="index.html">
             <button class="btn">Back to Home</button>
@@ -17,4 +57,3 @@
     </div>
 </body>
 </html>
-

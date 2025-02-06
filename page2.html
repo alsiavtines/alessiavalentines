@@ -18,13 +18,7 @@
             max-width: 400px; /* Limit max size */
             height: auto;
             border-radius: 10px;
-            animation: swapImages 1s infinite alternate ease-in-out;
-        }
-
-        /* Keyframes for image animation */
-        @keyframes swapImages {
-            0% { content: url('images/IMG_6819.png'); }
-            100% { content: url('images/IMG_number2.png'); }
+            visibility: hidden; /* Keeps the image in the layout while hiding it */
         }
 
         /* Styled button */
@@ -49,11 +43,41 @@
 <body>
     <div class="container">
         <h1>Welcome to Page 2</h1>
-        <img class="animated-image" alt="Alternating Image">
+        <img class="animated-image" id="animatedImage" alt="Alternating Image">
         <p>This is some text describing the second page.</p>
         <a href="index.html">
             <button class="btn">Back to Home</button>
         </a>
     </div>
+
+    <script>
+        const imgElement = document.getElementById('animatedImage');
+        const images = ['images/IMG_6819.png', 'images/IMG_number2.png'];
+        let loadedImages = 0;
+        let currentImageIndex = 0;
+
+        // Preload images
+        const preloadedImages = images.map(src => {
+            const img = new Image();
+            img.src = src;
+            img.onload = () => {
+                loadedImages++;
+                if (loadedImages === images.length) {
+                    startAnimation();
+                }
+            };
+            return img;
+        });
+
+        function startAnimation() {
+            imgElement.src = images[currentImageIndex];
+            imgElement.style.visibility = 'visible'; // Make the image visible after preloading
+
+            setInterval(() => {
+                currentImageIndex = (currentImageIndex + 1) % images.length;
+                imgElement.src = images[currentImageIndex];
+            }, 1000); // Change image every second
+        }
+    </script>
 </body>
 </html>

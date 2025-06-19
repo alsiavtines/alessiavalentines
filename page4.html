@@ -1,0 +1,57 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Reasons I Love You</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <h1 class="valentine-heading">52 Reasons I Love You</h1>
+
+<div class="dna">
+  <div class="dna-row">
+    <div class="dna-node pink" data-reason="Your smile is my favorite sight." data-img="images/1.jpg"></div>
+    <div class="dna-node blue" data-reason="asdf"></div>
+  </div>
+  
+  <div class="dna-row">
+    <div class="dna-node blue" data-reason="You make me laugh every day." data-img="images/3.jpg"></div>
+    <div class="dna-node pink" data-reason="You explain DNA better than any professor!" data-img="images/2.jpg"></div>
+  </div>
+
+  <div class="dna-row">
+    <div class="dna-node pink" data-reason="You give me purpose."></div>
+    <div class="dna-node blue" data-reason="Add blue reason here"></div>
+  </div>
+  <!-- Add more dna-row divs as pairs -->
+</div>
+
+
+  <div class="modal" id="modal">
+    <span class="close" id="close">&times;</span>
+    <img id="modal-img" src="" alt="">
+    <p id="modal-text"></p>
+  </div>
+
+  <script>
+    const nodes = document.querySelectorAll('.dna-node');
+    const modal = document.getElementById('modal');
+    const modalImg = document.getElementById('modal-img');
+    const modalText = document.getElementById('modal-text');
+    const closeBtn = document.getElementById('close');
+
+    nodes.forEach(node => {
+      node.addEventListener('click', () => {
+        modal.style.display = 'flex';
+        modalImg.src = node.getAttribute('data-img');
+        modalText.textContent = node.getAttribute('data-reason');
+      });
+    });
+
+    closeBtn.addEventListener('click', () => {
+      modal.style.display = 'none';
+    });
+  </script>
+</body>
+</html>

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>For My Sweet Girl</title>
+	<title>For My Pretty Lady</title>
 	<meta name="theme-color" content="#ea4c89">
 	<link rel="icon" href="../favicon.ico" type="image/x-icon">
 	<style>
@@ -32,7 +32,31 @@
 				radial-gradient(900px 500px at -10% -20%, rgba(255, 255, 255, 0.9), transparent 55%),
 				radial-gradient(700px 420px at 110% 0%, rgba(255, 255, 255, 0.65), transparent 55%),
 				linear-gradient(145deg, var(--bg1), var(--bg2));
+			overflow-x: hidden;
 		}
+
+		.bg-hearts {
+			position: fixed;
+			inset: 0;
+			pointer-events: none;
+			overflow: hidden;
+			z-index: 0;
+		}
+
+		.bg-hearts span {
+			position: absolute;
+			bottom: -40px;
+			color: rgba(214, 51, 108, 0.3);
+			font-size: 1.2rem;
+			animation: floatUp 10s linear infinite;
+		}
+
+		.bg-hearts span:nth-child(1) { left: 10%; animation-duration: 11s; animation-delay: 0s; }
+		.bg-hearts span:nth-child(2) { left: 24%; animation-duration: 9s; animation-delay: 1.3s; }
+		.bg-hearts span:nth-child(3) { left: 40%; animation-duration: 13s; animation-delay: 0.8s; }
+		.bg-hearts span:nth-child(4) { left: 58%; animation-duration: 10s; animation-delay: 2s; }
+		.bg-hearts span:nth-child(5) { left: 76%; animation-duration: 12s; animation-delay: 0.5s; }
+		.bg-hearts span:nth-child(6) { left: 90%; animation-duration: 9.5s; animation-delay: 1.8s; }
 
 		.card {
 			width: min(100%, 420px);
@@ -42,6 +66,19 @@
 			box-shadow: var(--shadow);
 			backdrop-filter: blur(10px);
 			overflow: hidden;
+			position: relative;
+			z-index: 1;
+			animation: cardIn 850ms cubic-bezier(.22,.8,.3,1) both;
+		}
+
+		.card::before {
+			content: "";
+			position: absolute;
+			inset: -140% -45%;
+			background: linear-gradient(110deg, transparent 40%, rgba(255, 255, 255, 0.5) 50%, transparent 60%);
+			transform: translateX(-90%) rotate(8deg);
+			animation: shimmer 6.5s ease-in-out infinite;
+			pointer-events: none;
 		}
 
 		.image-wrap {
@@ -57,6 +94,11 @@
 			box-shadow: 0 12px 26px rgba(0, 0, 0, 0.16);
 			object-fit: cover;
 			max-height: 52vh;
+			transition: transform 450ms ease;
+		}
+
+		.card:hover .main-image {
+			transform: scale(1.02);
 		}
 
 		.heart {
@@ -72,6 +114,7 @@
 			box-shadow: 0 8px 24px rgba(214, 51, 108, 0.25);
 			color: var(--accent);
 			font-size: 1.35rem;
+			animation: pulse 2.4s ease-in-out infinite;
 		}
 
 		.content {
@@ -85,6 +128,7 @@
 			font-size: clamp(1.38rem, 5vw, 1.8rem);
 			color: var(--accent);
 			letter-spacing: 0.01em;
+			animation: fadeUp 900ms 250ms both;
 		}
 
 		.line {
@@ -94,6 +138,8 @@
 			border-radius: 999px;
 			background: linear-gradient(90deg, #ff7da9, #d6336c);
 			opacity: 0.85;
+			background-size: 170% 100%;
+			animation: glowLine 2.8s ease-in-out infinite;
 		}
 
 		p {
@@ -102,6 +148,7 @@
 			line-height: 1.7;
 			color: #6c2a4b;
 			text-wrap: pretty;
+			animation: fadeUp 1s 400ms both;
 		}
 
 		.footer {
@@ -111,10 +158,76 @@
 			letter-spacing: 0.12em;
 			color: #b44572;
 			opacity: 0.8;
+			animation: fadeUp 1s 520ms both;
+		}
+
+		@keyframes cardIn {
+			from {
+				opacity: 0;
+				transform: translateY(22px) scale(0.985);
+			}
+			to {
+				opacity: 1;
+				transform: translateY(0) scale(1);
+			}
+		}
+
+		@keyframes fadeUp {
+			from {
+				opacity: 0;
+				transform: translateY(10px);
+			}
+			to {
+				opacity: 1;
+				transform: translateY(0);
+			}
+		}
+
+		@keyframes pulse {
+			0%, 100% { transform: scale(1); }
+			50% { transform: scale(1.12); }
+		}
+
+		@keyframes shimmer {
+			0%, 70% { transform: translateX(-90%) rotate(8deg); }
+			100% { transform: translateX(90%) rotate(8deg); }
+		}
+
+		@keyframes glowLine {
+			0%, 100% { background-position: 0% 50%; opacity: 0.75; }
+			50% { background-position: 100% 50%; opacity: 1; }
+		}
+
+		@keyframes floatUp {
+			0% {
+				transform: translateY(0) translateX(0) scale(1);
+				opacity: 0;
+			}
+			10% { opacity: 1; }
+			90% { opacity: 0.8; }
+			100% {
+				transform: translateY(-110vh) translateX(15px) scale(1.25);
+				opacity: 0;
+			}
+		}
+
+		@media (prefers-reduced-motion: reduce) {
+			*, *::before, *::after {
+				animation: none !important;
+				transition: none !important;
+			}
 		}
 	</style>
 </head>
 <body>
+	<div class="bg-hearts" aria-hidden="true">
+		<span>❤</span>
+		<span>❤</span>
+		<span>❤</span>
+		<span>❤</span>
+		<span>❤</span>
+		<span>❤</span>
+	</div>
 	<main class="card" role="main" aria-label="Love card">
 		<div class="image-wrap">
 			<img src="../images/coasters/coaster1.jpg" alt="A special memory together" class="main-image">
@@ -128,6 +241,7 @@
 				only thinking about how unobtainable that first kiss would be. I imagined how
 				perfect it would be — and every single time, it’s still just as perfect as I imagined.
 			</p>
+			<div class="footer">Made with love</div>
 		</section>
 	</main>
 </body>
